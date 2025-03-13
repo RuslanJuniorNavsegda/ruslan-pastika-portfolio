@@ -1,16 +1,41 @@
-// Цвета
-$colors: (
+// Цветовые схемы
+$themes: (
   dark: (
     bg: #0f0c29,
     text: #ffffff,
     gradient: linear-gradient(45deg, #0f0c29, #302b63, #24243e),
+    text-rgb: 255,
+    255,
+    255,
   ),
   light: (
     bg: #f8f9fa,
     text: #0f0c29,
     gradient: linear-gradient(45deg, #e0e0e0, #b8b8b8, #e0e0e0),
+    text-rgb: 15,
+    12,
+    41,
   ),
 );
 
 // Шрифты
 $font-primary: "Space Grotesk", sans-serif;
+$font-secondary: system-ui, -apple-system, sans-serif;
+
+// Отступы
+$section-padding: 5rem;
+$mobile-padding: 1.5rem;
+
+// Тени
+$shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 20px rgba(0, 0, 0, 0.15);
+$shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.2);
+
+// Breakpoints
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+
+// Z-index
+$z-header: 1000;
+$z-cursor: 9999;
+$z-preloader: 99999;

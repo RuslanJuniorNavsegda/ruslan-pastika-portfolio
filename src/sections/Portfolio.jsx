@@ -1,4 +1,5 @@
 import PortfolioItem from "../components/PortfolioItem";
+import { useState } from "react";
 
 const projects = [
   {

@@ -6,23 +6,36 @@ import Skills from "./sections/Skills";
 import Portfolio from "./sections/Portfolio";
 import Contacts from "./sections/Contacts";
 import Blog from "./sections/Blog";
+import ScrollToTop from "./components/ScrollToTop";
+import CustomCursor from "./components/CustomCursor";
+import Preloader from "./components/Preloader";
 
 export default function App() {
   const [theme, setTheme] = useState("dark");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
+    const timer = setTimeout(() => setIsLoading(false), 2500);
+    return () => clearTimeout(timer);
   }, [theme]);
 
   return (
     <div className="app">
+      {isLoading && <Preloader />}
+      <CustomCursor />
+
       <Header theme={theme} setTheme={setTheme} />
-      <Hero />
-      <About />
-      <Skills />
-      <Portfolio />
-      <Contacts />
-      <Blog />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Portfolio />
+        <Contacts />
+        <Blog />
+      </main>
+
+      <ScrollToTop />
     </div>
   );
 }
