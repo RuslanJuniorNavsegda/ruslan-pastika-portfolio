@@ -1,0 +1,16 @@
+// Цвета
+$colors: (
+  dark: (
+    bg: #0f0c29,
+    text: #ffffff,
+    gradient: linear-gradient(45deg, #0f0c29, #302b63, #24243e),
+  ),
+  light: (
+    bg: #f8f9fa,
+    text: #0f0c29,
+    gradient: linear-gradient(45deg, #e0e0e0, #b8b8b8, #e0e0e0),
+  ),
+);
+
+// Шрифты
+$font-primary: "Space Grotesk", sans-serif;
