@@ -24,7 +24,6 @@ export default function ScrollToTop() {
     <button
       className={`scroll-top ${isVisible ? "visible" : ""}`}
       onClick={scrollToTop}
-      aria-label="Наверх"
     >
       <FaArrowUp />
     </button>

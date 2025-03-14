@@ -7,7 +7,6 @@ import Portfolio from "./sections/Portfolio";
 import Contacts from "./sections/Contacts";
 import Blog from "./sections/Blog";
 import ScrollToTop from "./components/ScrollToTop";
-import CustomCursor from "./components/CustomCursor";
 import Preloader from "./components/Preloader";
 
 export default function App() {
@@ -23,9 +22,9 @@ export default function App() {
   return (
     <div className="app">
       {isLoading && <Preloader />}
-      <CustomCursor />
 
       <Header theme={theme} setTheme={setTheme} />
+
       <main>
         <Hero />
         <About />

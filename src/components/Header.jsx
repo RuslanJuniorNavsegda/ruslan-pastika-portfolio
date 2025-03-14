@@ -1,14 +1,27 @@
 import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
+import ThemeToggle from "./ThemeToggle";
+import SocialIcons from "./SocialIcons";
 
 export default function Header({ theme, setTheme }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const navLinks = [
+    { id: "about", text: "Обо мне" },
+    { id: "skills", text: "Навыки" },
+    { id: "portfolio", text: "Портфолио" },
+    { id: "contacts", text: "Контакты" },
+  ];
+
   return (
     <header className="header">
-      <nav className="nav">
+      <nav className="container">
+        <a href="#home" className="logo">
+          RP
+        </a>
+
         <button
-          className="burger-menu"
+          className="menu-toggle"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Меню"
         >
@@ -16,21 +29,18 @@ export default function Header({ theme, setTheme }) {
         </button>
 
         <div className={`nav-links ${isMenuOpen ? "active" : ""}`}>
-          <a href="#about" onClick={() => setIsMenuOpen(false)}>
-            Обо мне
-          </a>
-          <a href="#skills" onClick={() => setIsMenuOpen(false)}>
-            Навыки
-          </a>
-          <a href="#portfolio" onClick={() => setIsMenuOpen(false)}>
-            Портфолио
-          </a>
-          <a href="#contacts" onClick={() => setIsMenuOpen(false)}>
-            Контакты
-          </a>
+          {navLinks.map((link) => (
+            <a
+              key={link.id}
+              href={`#${link.id}`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {link.text}
+            </a>
+          ))}
         </div>
 
-        <div className="header-controls">
+        <div className="controls">
           <SocialIcons />
           <ThemeToggle theme={theme} setTheme={setTheme} />
         </div>

@@ -1,0 +1,32 @@
+@use "sass:map";
+
+// Цветовые схемы
+$themes: (
+  dark: (
+    bg: #0f0c29,
+    text: #ffffff,
+    gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e),
+    text-rgb: 255 255 255,
+    shadow: 0 8px 32px rgba(0, 0, 0, 0.25),
+  ),
+  light: (
+    bg: #f8f9fa,
+    text: #0f0c29,
+    gradient: linear-gradient(135deg, #e0e0e0, #b8b8b8, #e0e0e0),
+    text-rgb: 15 12 41,
+    shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+  ),
+);
+
+// Функции доступа
+@function theme($theme, $key) {
+  @return map.get(map.get($themes, $theme), $key);
+}
+
+// Размеры
+$header-height: 80px;
+$container-width: 1280px;
+$border-radius: 12px;
+
+// Транзишены
+$transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);

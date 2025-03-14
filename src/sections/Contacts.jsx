@@ -1,5 +1,8 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Contacts() {
   const formRef = useRef(null);
@@ -8,7 +11,6 @@ export default function Contacts() {
     gsap.from(formRef.current, {
       opacity: 0,
       y: 50,
-      duration: 1,
       scrollTrigger: {
         trigger: formRef.current,
         start: "top 80%",
@@ -17,23 +19,16 @@ export default function Contacts() {
   }, []);
 
   return (
-    <section className="contacts" id="contacts">
-      <div className="contacts-content">
-        <h2>Связаться со мной</h2>
-        <form
-          ref={formRef}
-          action="https://formspree.io/f/your-form-id"
-          method="POST"
-        >
-          <input type="text" name="name" placeholder="Ваше имя" required />
-          <input type="email" name="email" placeholder="Email" required />
-          <textarea
-            name="message"
-            placeholder="Сообщение"
-            rows="5"
-            required
-          ></textarea>
-          <button type="submit">Отправить</button>
+    <section className="contacts section" id="contacts">
+      <div className="container">
+        <h2>Свяжитесь со мной</h2>
+        <form ref={formRef} className="contact-form">
+          <input type="text" placeholder="Имя" required />
+          <input type="email" placeholder="Email" required />
+          <textarea placeholder="Сообщение" rows="5" required></textarea>
+          <button type="submit" className="btn">
+            Отправить
+          </button>
         </form>
       </div>
     </section>

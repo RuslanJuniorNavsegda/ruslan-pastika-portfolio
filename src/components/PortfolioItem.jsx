@@ -1,66 +1,24 @@
-import { useState } from "react";
-import PortfolioItem from "../components/PortfolioItem";
+import { forwardRef } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
-const projects = [
-  {
-    title: "Интернет-магазин",
-    tech: ["React", "Node.js", "MongoDB"],
-    description:
-      "Полнофункциональный магазин с системой оплаты и админ-панелью",
-    image: "/project1.jpg",
-    tags: ["Все", "React", "FullStack"],
-  },
-  {
-    title: "Портал для стартапа",
-    tech: ["Next.js", "GSAP", "Framer Motion"],
-    description: "Интерактивный лендинг с анимациями и параллакс-эффектами",
-    image: "/project2.jpg",
-    tags: ["Все", "Next.js", "Анимации"],
-  },
-  {
-    title: "Мобильное приложение",
-    tech: ["React Native", "Firebase", "Redux"],
-    description: "Кроссплатформенное приложение для управления задачами",
-    image: "/project3.jpg",
-    tags: ["Все", "React Native", "Mobile"],
-  },
-];
-
-export default function Portfolio() {
-  const [selectedTag, setSelectedTag] = useState("Все");
-
-  const filteredProjects =
-    selectedTag === "Все"
-      ? projects
-      : projects.filter((project) => project.tags.includes(selectedTag));
-
+const PortfolioItem = forwardRef(({ title, tech, image, link }, ref) => {
   return (
-    <section className="portfolio" id="portfolio">
-      <h2>Портфолио</h2>
-
-      <div className="tags-filter">
-        {["Все", "React", "Next.js", "React Native", "FullStack"].map((tag) => (
-          <button
-            key={tag}
-            className={selectedTag === tag ? "active" : ""}
-            onClick={() => setSelectedTag(tag)}
-          >
-            {tag}
-          </button>
-        ))}
+    <div className="portfolio-item" ref={ref}>
+      <LazyLoadImage src={image} alt={title} effect="blur" className="image" />
+      <div className="overlay">
+        <h3>{title}</h3>
+        <div className="tech-list">
+          {tech.map((item) => (
+            <span key={item}>{item}</span>
+          ))}
+        </div>
+        <a href={link} className="btn">
+          Посмотреть
+        </a>
       </div>
-
-      <div className="portfolio-grid">
-        {filteredProjects.map((project, index) => (
-          <PortfolioItem
-            key={index}
-            title={project.title}
-            tech={project.tech}
-            description={project.description}
-            image={project.image}
-          />
-        ))}
-      </div>
-    </section>
+    </div>
   );
-}
+});
+
+export default PortfolioItem;

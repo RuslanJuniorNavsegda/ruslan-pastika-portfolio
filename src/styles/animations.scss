@@ -1,0 +1,46 @@
+@use "variables" as v;
+
+// Базовые анимации
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// Миксины
+@mixin float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+@mixin pulse-animation {
+  animation: pulse 2s ease infinite;
+}
+
+// Специфичные анимации
+.galaxy-bg .particle {
+  animation: float 4s ease-in-out infinite, pulse 2s ease infinite;
+}
+
+.theme-toggle {
+  transition: transform v.$transition-base;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}

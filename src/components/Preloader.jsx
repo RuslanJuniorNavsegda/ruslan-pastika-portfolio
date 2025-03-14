@@ -2,26 +2,26 @@ import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 
 export default function Preloader() {
-  const preloaderRef = useRef(null);
+  const particles = useRef(Array.from({ length: 3 }));
 
   useEffect(() => {
-    const tl = gsap.timeline({
-      onComplete: () => (preloaderRef.current.style.display = "none"),
-    });
-
-    tl.to(preloaderRef.current, {
-      opacity: 0,
-      duration: 0.5,
-      delay: 2,
+    particles.current.forEach((_, i) => {
+      gsap.to(`.particle-${i}`, {
+        y: -30,
+        repeat: -1,
+        yoyo: true,
+        duration: 1,
+        delay: i * 0.3,
+      });
     });
   }, []);
 
   return (
-    <div ref={preloaderRef} className="preloader">
-      <div className="preloader-spinner">
-        <div className="spinner-particle"></div>
-        <div className="spinner-particle"></div>
-        <div className="spinner-particle"></div>
+    <div className="preloader">
+      <div className="particles">
+        {particles.current.map((_, i) => (
+          <div key={i} className={`particle particle-${i}`}></div>
+        ))}
       </div>
     </div>
   );
